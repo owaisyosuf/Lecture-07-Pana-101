@@ -1,0 +1,127 @@
+# Claude Code Prompt – "What's My Grade, Really"
+
+You are a Python developer. Build a single, simple Streamlit app that calculates my
+real current grade using my actual teacher's grading policy — not a generic weighted
+average calculator.
+
+## Context
+
+This is for a school assignment where I paste in my real scores and my teacher's real
+grading rules, and the tool tells me exactly where I stand and what I need on the
+final exam. Keep it simple — one working app, not a multi-page product. I need to be
+able to read the calculation logic myself and hand-check it against one category, so
+do not over-abstract the code into many files.
+
+## My Grading Categories and Weights
+
+(Fill in your real numbers before running this prompt)
+
+- Assignments = __%
+- Quizzes = __%
+- Labs = __%
+- Projects = __%
+- Midterm = __%
+- Final Exam = __%
+
+Weights must total 100%. If they don't, show a clear error.
+
+## Special Rule — Final Exam Replacement
+
+My teacher's policy: **if my Final Exam score (as a percentage) is higher than my
+Midterm score (as a percentage), the Final Exam percentage replaces the Midterm
+percentage for grading purposes.** The Midterm's own weight slot then uses the Final
+Exam score instead. The Final Exam category still keeps its own weight and its own
+score as normal — this is a substitution, not a removal.
+
+Implement this explicitly as its own function, e.g. `apply_replacement_rule()`, with
+a comment explaining the logic, so I can check it against my own math.
+
+(If your policy has this differently — e.g. only replaces if the exam is "high enough,"
+or replaces a specific number of points rather than the whole category — describe your
+exact rule here instead. Also mention if there are any drop-lowest rules for
+Assignments/Quizzes/Labs, since some teachers combine both. If none, say "no
+drop-lowest rules apply.")
+
+## My Real Scores — Input Format
+
+Do not have me paste scores as text. Instead, build an editable table in the UI:
+
+- One row per grading category (Assignments, Quizzes, Labs, Projects, Midterm,
+  Final Exam)
+- A blank input column next to each category where I type in my score(s) directly
+  in the app
+- If a category can have multiple items (e.g. several assignments or quizzes), let
+  me add rows for that category so I can enter each score separately, then the app
+  averages them
+- Leave a score blank/empty if I haven't taken it yet (e.g. Final Exam not yet
+  graded) — the app should treat it as "ungraded" and still compute my current
+  grade from what's filled in, plus support the target-grade calculator below
+- Use `st.data_editor` (an editable table) for this, one table per category or one
+  combined table with a "Category" column and a "Score" column — whichever is
+  cleaner to read and verify by hand
+
+Do not invent placeholder scores yourself — the table starts empty and I fill it in
+when I run the app.
+
+## What the App Must Calculate
+
+1. Average of each category (from my real entered scores)
+2. Weighted contribution of each category
+3. Whether the replacement rule triggers (show this clearly, e.g. "Final Exam (91%)
+   replaced Midterm (74%) — using 91% for Midterm weight")
+4. Current overall grade percentage, based on completed categories
+5. Remaining weight (categories not yet graded, e.g. Final Exam)
+6. Letter grade using this scale:
+   - A+ = 90–100
+   - A = 85–89
+   - B+ = 80–84
+   - B = 75–79
+   - C+ = 70–74
+   - C = 65–69
+   - D = 50–64
+   - F = Below 50
+
+## Hand-Verification Support (required)
+
+Print or display a clear breakdown table showing each category's raw average and
+its weighted contribution (average × weight), so I can pick one category, calculate
+it by hand, and confirm the script matches. This is required — I will not trust the
+final number until I've checked at least one category manually.
+
+## Final Exam Target Calculator
+
+Let me enter a target overall grade (e.g. 85%). The app should:
+- Solve for the Final Exam score needed to reach that target, accounting for the
+  replacement rule (i.e., check both scenarios — final used normally, and final
+  triggering the replacement — and report which applies)
+- Clearly state if the target is mathematically impossible (e.g., requires over 100%)
+- Show the math, not just the final number, so I can verify it
+
+## Validation
+
+- No negative scores
+- Scores can't exceed their stated maximum
+- Weights must sum to 100%
+- No division by zero
+- Friendly error messages, not stack traces
+
+## UI
+
+Keep it to ONE Streamlit page (`app.py`). Simple, clean, readable:
+- Sidebar for entering weights and the replacement rule toggle/description
+- Main area: an editable table (categories listed, blank column for me to type in
+  my scores — see "My Real Scores — Input Format" above), a breakdown table showing
+  each category's average and weighted contribution, current grade + letter grade,
+  and the target calculator
+- One or two Plotly charts max (e.g. weighted contribution bar chart) — charts are
+  a nice-to-have, not the point of this assignment
+
+## Deliverables
+
+- `app.py` — the full working script, single file, well-commented
+- `requirements.txt`
+- A short `README.md` explaining how to run it and how the replacement rule works
+
+Do not build multiple pages, export features, dark mode, GPA estimator, or other
+extras. Do not leave TODOs — the code must run immediately with
+`streamlit run app.py`.
