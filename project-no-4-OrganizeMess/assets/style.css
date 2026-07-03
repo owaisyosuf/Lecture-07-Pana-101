@@ -1,0 +1,153 @@
+/* ==========================================================================
+   Organize Mess — Dashboard Theme
+   A clean, professional slate/indigo palette with amber accents.
+   ========================================================================== */
+
+:root {
+    --bg-primary: #0f1420;
+    --bg-secondary: #161d2e;
+    --bg-card: #1b2436;
+    --border-subtle: #2a3549;
+    --text-primary: #e8ecf4;
+    --text-secondary: #9aa5b8;
+    --accent-amber: #e0a84e;
+    --accent-blue: #5b8def;
+    --accent-green: #4caf82;
+    --accent-red: #e0654e;
+    --accent-purple: #9b7fe0;
+}
+
+.stApp {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-subtle);
+}
+
+section[data-testid="stSidebar"] .stRadio label {
+    font-size: 0.95rem;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    background: linear-gradient(90deg, var(--accent-amber), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Metric cards */
+div[data-testid="stMetric"] {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+div[data-testid="stMetric"] label {
+    color: var(--text-secondary) !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background-color: var(--accent-amber);
+    color: #16130a;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(224, 168, 78, 0.35);
+    color: #16130a;
+}
+
+.stButton > button:disabled {
+    background-color: #3a3f4a;
+    color: #7a8090;
+}
+
+/* Progress bar */
+.stProgress > div > div {
+    background-color: var(--accent-amber);
+}
+
+/* Tables / dataframes */
+div[data-testid="stDataFrame"] {
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Expander */
+details {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+/* Status badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-right: 0.4rem;
+}
+.badge-move { background: rgba(91, 141, 239, 0.18); color: var(--accent-blue); }
+.badge-rename { background: rgba(155, 127, 224, 0.18); color: var(--accent-purple); }
+.badge-flag { background: rgba(224, 168, 78, 0.18); color: var(--accent-amber); }
+.badge-delete { background: rgba(224, 101, 78, 0.18); color: var(--accent-red); }
+.badge-ok { background: rgba(76, 175, 130, 0.18); color: var(--accent-green); }
+
+/* Section card wrapper */
+.section-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.section-card h4 {
+    margin-top: 0;
+    color: var(--accent-amber);
+}
+
+/* Alert / callout boxes */
+.callout {
+    border-left: 3px solid var(--accent-amber);
+    background-color: rgba(224, 168, 78, 0.08);
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    margin: 0.6rem 0;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+}
+
+/* Small caption text */
+.small-caption {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+}
+
+hr {
+    border-color: var(--border-subtle);
+}
