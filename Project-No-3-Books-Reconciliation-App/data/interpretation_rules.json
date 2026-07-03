@@ -1,0 +1,37 @@
+{
+  "_comment": "Interpretation rules applied automatically by src/rules.py before matching. Keys are matched case-insensitively after whitespace/separator normalization.",
+
+  "name_aliases": {
+    "Aly": "Ali",
+    "Alee": "Ali",
+    "M Ahmed": "Ahmed",
+    "Muhd Ahmed": "Ahmed",
+    "Ahmed K": "Ahmed",
+    "Osman K": "Osman",
+    "Zain ul Abideen": "Zain"
+  },
+
+  "memo_aliases": {
+    "Trip 😊": "Trip Payment",
+    "HAMZA": "Hamza Payment",
+    "Danish | Payment": "Danish Payment",
+    "Farhan/Trip": "Farhan Trip",
+    "Ali-Trip": "Ali Trip",
+    "Trip-Payment": "Trip Payment",
+    "Asad-Trip": "Asad Trip"
+  },
+
+  "known_unknown_senders": {
+    "_comment": "Senders explicitly known to not be part of the expected 20 contributors. Still shown in the app, flagged as Unknown Sender.",
+    "Zubair Khan": "Not a listed contributor - needs manual investigation"
+  },
+
+  "partial_payment_threshold": 1.0,
+
+  "_notes": [
+    "name_aliases maps a raw Sender Name (after trim/case-fold) to the canonical name found in expected_people.csv.",
+    "Any sender not in name_aliases and not an exact (case-insensitive) match to an expected name is treated as Unknown Sender.",
+    "memo_aliases is cosmetic only - it does not affect matching, just cleans up display text.",
+    "partial_payment_threshold is the fraction of ExpectedAmount below which a matched payment is flagged Partial (1.0 = anything under expected)."
+  ]
+}
